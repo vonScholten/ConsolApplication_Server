@@ -17,9 +17,9 @@ public class ConsolServer {
         java.rmi.registry.LocateRegistry.createRegistry(1099);
         
         ConsolI con = new ConsolImpl();
-        //188.166.168.107 i stedet for localhost når den køre på vores webserver
-        //System.setProperty("java.rmi.server.hostname", "188.166.168.107");
-        Naming.rebind("rmi://localhost:1099/ConsolApplication", con);
+        //188.166.168.107 i stedet når den køre på vores webserver
+        System.setProperty("java.rmi.server.hostname", "188.166.168.107");
+        Naming.rebind("rmi://188.166.168.107:1099/ConsolApplication", con);
         System.out.println("ConsolServer.main()");
     }
 }
