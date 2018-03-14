@@ -16,7 +16,6 @@ import java.util.logging.Logger;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Alt
@@ -24,10 +23,11 @@ import java.util.logging.Logger;
 public class ConsolImpl extends UnicastRemoteObject implements ConsolI {
 
     ArrayList<String> data = new ArrayList<>();
-    
-    public ConsolImpl() throws java.rmi.RemoteException{
+
+    public ConsolImpl() throws java.rmi.RemoteException {
+        super();
     }
-    
+
     @Override
     public void addData(String name) {
         data.add(name);
@@ -47,22 +47,31 @@ public class ConsolImpl extends UnicastRemoteObject implements ConsolI {
     }
 
     @Override
-    public String login(String user, String passwd) throws RemoteException {
-        
+    public boolean login(String user, String passwd) throws RemoteException {
+
         Brugeradmin ba;
         Bruger b;
         String loginData = null;
-        
+
         try {
             ba = (Brugeradmin) Naming.lookup("rmi://javabog.dk/brugeradmin");
             b = ba.hentBruger(user, passwd);
-            
+
             loginData = "User: " + b + ", " + "Data: " + Diverse.toString(b);
 
         } catch (NotBoundException | MalformedURLException ex) {
             Logger.getLogger(ConsolImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-		return loginData;
+
+        System.out.println(loginData);
+        return true;
     }
-    
+
+    @Override
+    public String greetings() throws RemoteException {
+        System.out.println("ConsolImpl.greetings()");
+        return "Greetings";
+
+    }
+
 }
