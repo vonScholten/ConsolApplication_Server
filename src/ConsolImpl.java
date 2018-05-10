@@ -31,13 +31,13 @@ public class ConsolImpl extends UnicastRemoteObject implements ConsolI {
     @Override
     public void addData(String name) {
         data.add(name);
-        System.out.println("ConsolImpl.addData()");
+        System.out.println("ConsolImpl.addData() \n" + name);
     }
 
     @Override
     public void removeData(String name) {
         data.remove(name);
-        System.out.println("ConsolImpl.removeData()");
+        
     }
 
     @Override
@@ -70,8 +70,22 @@ public class ConsolImpl extends UnicastRemoteObject implements ConsolI {
     @Override
     public String greetings() throws RemoteException {
         System.out.println("ConsolImpl.greetings()");
-        return "Greetings";
+        return "Hello \n  Du skal loge på for at få adgang";
 
+    }
+
+    @Override
+    public String help() throws RemoteException {
+        
+        String whelp = "Help:\n Du kan skrive følgende kommandoer \n"
+                + "tilføj et navn -> add \n"
+                + "fjern et navn -> remove \n"
+                + "vis alle navne -> show* \n"
+                + "luk -> exit \n"
+                + "fortryd -> c \n";
+        
+        return whelp;
+        
     }
 
 }

@@ -18,7 +18,7 @@ public class ConsolServer {
         
         ConsolI con = new ConsolImpl();
         //178.62.24.12 i stedet når den køre på vores webserver
-        System.setProperty("java.rmi.server.hostname", "ubuntu4.saluton.dk");
+        System.setProperty("java.rmi.server.hostname", "10.16.237.26");
         Naming.rebind("rmi://localhost:3097/ConsolApplication", con);
         System.out.println("ConsolServer.main()");
     }
